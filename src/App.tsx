@@ -505,7 +505,7 @@ export default function App() {
 
             {/* Promoter Earnings Hub Component */}
             <div className={`lg:block ${mobileActiveTab === 'promoter' ? 'block' : 'hidden'}`}>
-              {user && (localStorage.getItem("opendeal_admin") === "true") ? (
+              {user ? (
                 <EarningsHub
                   deals={DEALS_DATA}
                   userStats={userStats}
