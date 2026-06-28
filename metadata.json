@@ -1,6 +1,0 @@
-{
-  "name": "OpenDeal Route Scanner",
-  "description": "Scan open-box liquidation deals in the USA. Compare local pricing comps, plan driving routes, and track affiliate referral earnings.",
-  "requestFramePermissions": [],
-  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
-}
