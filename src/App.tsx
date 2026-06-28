@@ -113,8 +113,27 @@ export default function App() {
 
   // Find active deal entity
   const activeDeal = useMemo(() => {
-    return DEALS_DATA.find(d => d.id === activeDealId) || DEALS_DATA[0] || { id: "", title: "", comps: [], storeLocation: { lat: 0, lng: 0 } };
-  }, [activeDealId]);
+    return DEALS_DATA.find(d => d.id === activeDealId) || DEALS_DATA[0] || {
+      id: "",
+      title: "Loading active liquidations...",
+      description: "",
+      category: "Electronics",
+      price: 0,
+      originalPrice: 0,
+      discountPercent: 0,
+      condition: "Open Box - Pristine",
+      storeName: "Loading Warehouse...",
+      storeLocation: { lat: 34.0522, lng: -118.2437, city: "", state: "", address: "", storeName: "" },
+      shippingAvailable: false,
+      onlineReferralRate: 0,
+      referralEarningType: "flat",
+      referralEarningValue: 0,
+      originalProductUrl: "",
+      imageUrl: "",
+      popularityScore: 0,
+      comps: []
+    };
+  }, [activeDealId, DEALS_DATA]);
 
   // Compute Categories from data dynamically
   const categoriesList = useMemo(() => {
