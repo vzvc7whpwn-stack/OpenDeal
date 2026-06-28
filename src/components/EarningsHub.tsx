@@ -44,7 +44,7 @@ export default function EarningsHub({
   const currentDeal = deals.find(d => d.id === selectedDealId) || deals[0];
 
   // Formulate the tracking link
-  const generatedLink = `https://opendeals.usa/ref?deal=${currentDeal?.id}&promoter=${customHandle.trim().toLowerCase() || 'partner'}`;
+  const generatedLink = `${window.location.origin}/buy?deal=${currentDeal?.id}&promoter=${customHandle.trim().toLowerCase() || 'partner'}`;
 
   const handleCopyLink = () => {
     navigator.clipboard.writeText(generatedLink);

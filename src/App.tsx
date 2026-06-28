@@ -36,7 +36,7 @@ import DealsMap from './components/DealsMap';
 import EarningsHub from './components/EarningsHub';
 
 export default function App() {
-  const [liveDeals, setLiveDeals] = useState<Deal[]>(MOCK_DEALS);
+  const [liveDeals, setLiveDeals] = useState<Deal[]>([]);
   const DEALS_DATA = liveDeals;
 
   useEffect(() => {
@@ -45,7 +45,19 @@ export default function App() {
         const { data, error } = await supabase.from("deals").select("*");
         if (error) throw error;
         if (data && data.length > 0) {
-          setLiveDeals(data as Deal[]);
+          const formatted = data.map(d => ({
+            ...d,
+            id: d.id || String(Math.random()),
+            title: d.title || "Liquidation Item",
+            price: Number(d.price),
+            originalPrice: Number(d.originalPrice || d.price),
+            discountPercent: Number(d.discountPercent || 0),
+            storeName: d.storeName || d.store || "Liquidation Warehouse",
+            storeLocation: typeof d.storeLocation === "string" ? JSON.parse(d.storeLocation) : (d.storeLocation || { lat: 34.0522, lng: -118.2437, city: "US", state: "ALL", address: "", storeName: "" }),
+            comps: typeof d.comps === "string" ? JSON.parse(d.comps) : (d.comps || [])
+          }));
+          setLiveDeals(formatted as Deal[]);
+          if (formatted.length > 0) setActiveDealId(formatted[0].id);
         }
       } catch (err) {
         console.warn("Supabase data missing or unavailable, using local fallbacks:", err);
@@ -64,7 +76,7 @@ export default function App() {
   const [sortBy, setSortBy] = useState<'discount' | 'price-low' | 'price-high' | 'popularity'>('discount');
 
   // Active Item Selection State
-  const [activeDealId, setActiveDealId] = useState<string>(DEALS_DATA[0].id);
+  const [activeDealId, setActiveDealId] = useState<string>("");
   const [activeComp, setActiveComp] = useState<CompDeal | null>(null);
 
   // User simulated GPS Draggable location state (lat/lng offsets)
@@ -101,7 +113,7 @@ export default function App() {
 
   // Find active deal entity
   const activeDeal = useMemo(() => {
-    return DEALS_DATA.find(d => d.id === activeDealId) || DEALS_DATA[0];
+    return DEALS_DATA.find(d => d.id === activeDealId) || DEALS_DATA[0] || { id: "", title: "", comps: [], storeLocation: { lat: 0, lng: 0 } };
   }, [activeDealId]);
 
   // Compute Categories from data dynamically
@@ -183,7 +195,7 @@ export default function App() {
                 <h1 className="text-lg font-extrabold tracking-tight">OpenDeal Route Scanner</h1>
                 <span className="text-[9px] font-bold uppercase tracking-widest bg-teal-400/20 text-teal-300 px-2 py-0.5 rounded border border-teal-500/30">USA LIQUIDATION</span>
               </div>
-              <p className="text-[10px] text-neutral-400">Open-Box Deals, Pallet Liquidation & Commission Engine</p>
+              <p className="text-[10px] text-neutral-400"></p>
             </div>
           </div>
 
