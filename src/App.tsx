@@ -3,7 +3,8 @@
  * SPDX-License-Identifier: Apache-2.0
  */
 
-import React, { useState, useMemo } from 'react';
+import React, { useState, useMemo, useEffect } from 'react';
+import { supabase } from './supabaseClient';
 import { 
   Search, 
   SlidersHorizontal, 
@@ -28,13 +29,30 @@ import {
 } from 'lucide-react';
 
 // Imports from our modular modules
-import { DEALS_DATA, REGIONS_LIST } from './data/dealsData';
+import { DEALS_DATA as MOCK_DEALS, REGIONS_LIST } from './data/dealsData';
 import { Deal, CompDeal, UserStats } from './types';
 import DealCard from './components/DealCard';
 import DealsMap from './components/DealsMap';
 import EarningsHub from './components/EarningsHub';
 
 export default function App() {
+  const [liveDeals, setLiveDeals] = useState<Deal[]>(MOCK_DEALS);
+  const DEALS_DATA = liveDeals;
+
+  useEffect(() => {
+    async function loadLiveDeals() {
+      try {
+        const { data, error } = await supabase.from("deals").select("*");
+        if (error) throw error;
+        if (data && data.length > 0) {
+          setLiveDeals(data as Deal[]);
+        }
+      } catch (err) {
+        console.warn("Supabase data missing or unavailable, using local fallbacks:", err);
+      }
+    }
+    loadLiveDeals();
+  }, []);
   // Navigation tabs for smaller mobile viewports
   const [mobileActiveTab, setMobileActiveTab] = useState<'listings' | 'map' | 'promoter'>('listings');
 
