@@ -79,16 +79,16 @@ export default function DealsMap({
     ...activeDeal.comps.map(c => ({ lat: c.lat, lng: c.lng }))
   ];
 
-  const lats = allCoords.map(c => c.lat);
-  const lngs = allCoords.map(c => c.lng);
+    const lats = allCoords.map(c => c.lat).filter(l => !isNaN(l) && l !== 0);
+  const lngs = allCoords.map(c => c.lng).filter(g => !isNaN(g) && g !== 0);
 
   const padding = 0.015;
-  const bounds = {
+  const bounds = lats.length > 0 ? {
     minLat: Math.min(...lats) - padding,
     maxLat: Math.max(...lats) + padding,
     minLng: Math.min(...lngs) - padding,
     maxLng: Math.max(...lngs) + padding
-  };
+  } : { minLat: 24, maxLat: 49, minLng: -125, maxLng: -66 }; // National US View Box Default
 
   // Coordinate scaling to SVG 500x320 view box
   const getX = (lng: number) => {

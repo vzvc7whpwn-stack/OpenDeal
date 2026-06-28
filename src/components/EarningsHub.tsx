@@ -34,7 +34,7 @@ export default function EarningsHub({
   setUserStats
 }: EarningsHubProps) {
   const [selectedDealId, setSelectedDealId] = useState<string>(deals[0]?.id || '');
-  const [customHandle, setCustomHandle] = useState<string>('chandler35');
+  const [customHandle, setCustomHandle] = useState<string>('partner');
   const [copiedLink, setCopiedLink] = useState(false);
   const [isRequestingPayout, setIsRequestingPayout] = useState(false);
   const [payoutSuccess, setPayoutSuccess] = useState(false);
@@ -98,12 +98,14 @@ export default function EarningsHub({
     }, 1500);
   };
 
+  const isAdmin = window.localStorage.getItem('opendeal_admin') === 'true';
+
   return (
     <div className="bg-white rounded-2xl border border-neutral-200 shadow-md p-6 space-y-6">
       {/* Title & Commission Intro Banner */}
       <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4 border-b border-neutral-100 pb-5">
         <div>
-          <span className="text-xs font-bold text-teal-600 uppercase tracking-wider">Passive Affiliate Network</span>
+          {isAdmin ? <span className="text-xs font-bold text-rose-500 uppercase tracking-wider">Admin Control Console</span> : <span className="text-xs font-bold text-teal-600 uppercase tracking-wider">Affiliate Tracker Link Hub</span>}
           <h2 className="text-xl font-bold text-neutral-900 tracking-tight mt-1 flex items-center gap-2">
             <Award className="w-5 h-5 text-amber-500" />
             Referral Earnings & Link Hub

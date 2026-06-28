@@ -96,7 +96,7 @@ export default function App() {
 
   // Claim Deal Modal / Simulated external redirect simulation
   const [claimedDeal, setClaimedDeal] = useState<Deal | null>(null);
-  const [referralPromoterInput, setReferralPromoterInput] = useState('chandler35');
+  const [referralPromoterInput, setReferralPromoterInput] = useState('partner');
 
   // Reset comp selection when user changes active deal
   const handleSelectDeal = (dealId: string) => {
