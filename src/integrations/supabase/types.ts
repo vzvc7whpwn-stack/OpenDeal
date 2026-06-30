@@ -14,6 +14,69 @@ export type Database = {
   }
   public: {
     Tables: {
+      deals: {
+        Row: {
+          category: string
+          comps: Json | null
+          condition: string
+          description: string | null
+          discountPercent: number
+          id: string
+          imageUrl: string | null
+          onlineReferralRate: number | null
+          originalPrice: number
+          originalProductUrl: string | null
+          popularityScore: number | null
+          price: number
+          referralEarningType: string | null
+          referralEarningValue: number | null
+          shippingAvailable: boolean | null
+          storeLocation: Json
+          storeName: string
+          title: string
+        }
+        Insert: {
+          category: string
+          comps?: Json | null
+          condition: string
+          description?: string | null
+          discountPercent: number
+          id: string
+          imageUrl?: string | null
+          onlineReferralRate?: number | null
+          originalPrice: number
+          originalProductUrl?: string | null
+          popularityScore?: number | null
+          price: number
+          referralEarningType?: string | null
+          referralEarningValue?: number | null
+          shippingAvailable?: boolean | null
+          storeLocation: Json
+          storeName: string
+          title: string
+        }
+        Update: {
+          category?: string
+          comps?: Json | null
+          condition?: string
+          description?: string | null
+          discountPercent?: number
+          id?: string
+          imageUrl?: string | null
+          onlineReferralRate?: number | null
+          originalPrice?: number
+          originalProductUrl?: string | null
+          popularityScore?: number | null
+          price?: number
+          referralEarningType?: string | null
+          referralEarningValue?: number | null
+          shippingAvailable?: boolean | null
+          storeLocation?: Json
+          storeName?: string
+          title?: string
+        }
+        Relationships: []
+      }
       profiles: {
         Row: {
           avatar_url: string | null
