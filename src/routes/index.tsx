@@ -1,27 +1,27 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { ErrorBoundary } from "@/components/error-boundary";
-import { SiteHeader } from "@/components/site-header";
-import { SiteFooter } from "@/components/site-footer";
-import { Hero } from "@/components/marketing/hero";
-import { Features } from "@/components/marketing/features";
-import { Pricing } from "@/components/marketing/pricing";
+import DealsApp from "@/components/DealsApp";
 
 export const Route = createFileRoute("/")({
   head: () => ({
     meta: [
-      { title: "Lumen — AI Product Analytics That Pay For Themselves" },
+      { title: "OpenDeal Route Scanner — Liquidation & Open-Box Deals Across the USA" },
       {
         name: "description",
         content:
-          "Lumen turns raw user events into revenue decisions. Spot churn, ship the right features, and grow MRR — all in one analytics stack.",
+          "Browse live open-box, refurbished, and liquidation pallet deals in major US metros. Compare local comps, calculate pickup drive time, and earn promoter commissions on every referred sale.",
       },
-      { property: "og:title", content: "Lumen — AI Product Analytics" },
+      { name: "keywords", content: "liquidation pallets, open box deals, refurbished electronics, affiliate commission, deal scanner" },
+      { property: "og:title", content: "OpenDeal Route Scanner — Liquidation & Open-Box Deals" },
       {
         property: "og:description",
-        content: "Turn raw events into revenue decisions with AI-powered product analytics.",
+        content: "Find open-box and clearance deals near you, compare nearby comps, and earn referral commissions.",
       },
       { property: "og:type", content: "website" },
       { property: "og:url", content: "/" },
+      { name: "twitter:card", content: "summary_large_image" },
+      { name: "twitter:title", content: "OpenDeal Route Scanner" },
+      { name: "twitter:description", content: "Open-box and liquidation deals with built-in promoter earnings." },
     ],
     links: [{ rel: "canonical", href: "/" }],
     scripts: [
@@ -29,13 +29,12 @@ export const Route = createFileRoute("/")({
         type: "application/ld+json",
         children: JSON.stringify({
           "@context": "https://schema.org",
-          "@type": "SoftwareApplication",
-          name: "Lumen",
-          applicationCategory: "BusinessApplication",
-          offers: [
-            { "@type": "Offer", name: "Free", price: "0", priceCurrency: "USD" },
-            { "@type": "Offer", name: "Pro", price: "29", priceCurrency: "USD" },
-          ],
+          "@type": "WebApplication",
+          name: "OpenDeal Route Scanner",
+          applicationCategory: "ShoppingApplication",
+          operatingSystem: "Web",
+          description:
+            "Real-time scanner for open-box, refurbished, and liquidation deals across major US metros with built-in promoter commission tracking.",
         }),
       },
     ],
@@ -45,14 +44,8 @@ export const Route = createFileRoute("/")({
 
 function Index() {
   return (
-    <div className="flex min-h-screen flex-col bg-background text-foreground">
-      <SiteHeader />
-      <main className="flex-1">
-        <ErrorBoundary><Hero /></ErrorBoundary>
-        <ErrorBoundary><Features /></ErrorBoundary>
-        <ErrorBoundary><Pricing /></ErrorBoundary>
-      </main>
-      <SiteFooter />
-    </div>
+    <ErrorBoundary>
+      <DealsApp />
+    </ErrorBoundary>
   );
 }
