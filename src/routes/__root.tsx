@@ -12,6 +12,9 @@ import { SpeedInsights } from "@vercel/speed-insights/react";
 
 import appCss from "../styles.css?url";
 import { reportLovableError } from "../lib/lovable-error-reporting";
+import { envOk, missingEnvVars } from "@/lib/env";
+import { EnvFallback } from "@/components/env-fallback";
+import { AuthProvider } from "@/components/auth-provider";
 
 function NotFoundComponent() {
   return (
