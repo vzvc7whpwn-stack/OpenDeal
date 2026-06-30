@@ -4,7 +4,7 @@
  */
 
 import React, { useState, useMemo, useEffect } from 'react';
-import { supabase } from './supabaseClient';
+import { supabase } from '@/integrations/supabase/client';
 import { 
   Search, 
   SlidersHorizontal, 
@@ -29,13 +29,13 @@ import {
 } from 'lucide-react';
 
 // Imports from our modular modules
-import { DEALS_DATA as MOCK_DEALS, REGIONS_LIST } from './data/dealsData';
-import { Deal, CompDeal, UserStats } from './types';
-import DealCard from './components/DealCard';
-import DealsMap from './components/DealsMap';
-import EarningsHub from './components/EarningsHub';
+import { DEALS_DATA as MOCK_DEALS, REGIONS_LIST } from '@/data/dealsData';
+import { Deal, CompDeal, UserStats } from '@/types';
+import DealCard from '@/components/DealCard';
+import DealsMap from '@/components/DealsMap';
+import EarningsHub from '@/components/EarningsHub';
 
-export default function App() {
+export default function DealsApp() {
   const [liveDeals, setLiveDeals] = useState<Deal[]>([]);
   const DEALS_DATA = liveDeals;
 
@@ -45,7 +45,7 @@ export default function App() {
         const { data, error } = await supabase.from("deals").select("*");
         if (error) throw error;
         if (data && data.length > 0) {
-          const formatted = data.map(d => ({
+          const formatted = data.map((d: any) => ({
             ...d,
             id: d.id || String(Math.random()),
             title: d.title || "Liquidation Item",
@@ -178,7 +178,7 @@ export default function App() {
     setClaimedDeal(deal);
     
     // Automatically credit promoter clicks inside our active simulation stats
-    setUserStats(prev => ({
+    setUserStats((prev: UserStats) => ({
       ...prev,
       totalClicks: prev.totalClicks + 1
     }));
@@ -189,7 +189,7 @@ export default function App() {
     if (!claimedDeal) return;
     const earnVal = claimedDeal.referralEarningValue;
     
-    setUserStats(prev => ({
+    setUserStats((prev: UserStats) => ({
       ...prev,
       conversions: prev.conversions + 1,
       totalEarnings: prev.totalEarnings + earnVal,
@@ -312,7 +312,7 @@ export default function App() {
                       onChange={(e) => setSelectedRegion(e.target.value)}
                       className="w-full text-xs pl-3 pr-8 py-2 bg-neutral-50 border border-neutral-200 rounded-xl focus:outline-none appearance-none cursor-pointer font-medium text-neutral-800"
                     >
-                      {REGIONS_LIST.map((reg) => (
+                      {REGIONS_LIST.map((reg: { city: string; state: string }) => (
                         <option key={reg.city} value={reg.city}>
                           {reg.city} {reg.city !== 'All Regions' ? `(${reg.state})` : ''}
                         </option>
@@ -473,7 +473,7 @@ export default function App() {
                 onSelectComp={setActiveComp}
                 userLatOffset={userLatOffset}
                 userLngOffset={userLngOffset}
-                setUserOffsets={(lat, lng) => {
+                setUserOffsets={(lat: number, lng: number) => {
                   setUserLatOffset(lat);
                   setUserLngOffset(lng);
                 }}
@@ -505,7 +505,7 @@ export default function App() {
 
             {/* Promoter Earnings Hub Component */}
             <div className={`lg:block ${mobileActiveTab === 'promoter' ? 'block' : 'hidden'}`}>
-              {user ? (
+              {true ? (
                 <EarningsHub
                   deals={DEALS_DATA}
                   userStats={userStats}
