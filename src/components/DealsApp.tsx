@@ -34,8 +34,11 @@ import { Deal, CompDeal, UserStats } from '@/types';
 import DealCard from '@/components/DealCard';
 import DealsMap from '@/components/DealsMap';
 import EarningsHub from '@/components/EarningsHub';
+import { useAuth } from '@/components/auth-provider';
+import { Link } from '@tanstack/react-router';
 
 export default function DealsApp() {
+  const { user, signOut } = useAuth();
   const [liveDeals, setLiveDeals] = useState<Deal[]>([]);
   const DEALS_DATA = liveDeals;
 
