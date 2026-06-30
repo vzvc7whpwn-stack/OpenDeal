@@ -605,3 +605,35 @@ export default function DealsApp() {
     </div>
   );
 }
+
+function AuthChip() {
+  const { user, loading, signOut } = useAuth();
+  if (loading) {
+    return <div className="hidden sm:block h-8 w-20 rounded-xl bg-neutral-800 animate-pulse" aria-hidden />;
+  }
+  if (!user) {
+    return (
+      <Link
+        to="/auth"
+        className="px-3 py-1.5 rounded-xl bg-teal-500 hover:bg-teal-400 text-neutral-950 text-xs font-extrabold transition"
+      >
+        Sign in
+      </Link>
+    );
+  }
+  const label = user.email?.split('@')[0] ?? 'Account';
+  return (
+    <div className="flex items-center gap-2">
+      <span className="hidden sm:inline text-[11px] text-neutral-300 font-medium max-w-[120px] truncate">
+        {label}
+      </span>
+      <button
+        type="button"
+        onClick={() => { void signOut(); }}
+        className="px-3 py-1.5 rounded-xl border border-neutral-700 hover:bg-neutral-800 text-neutral-200 text-xs font-bold transition"
+      >
+        Sign out
+      </button>
+    </div>
+  );
+}
