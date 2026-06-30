@@ -31,16 +31,21 @@ export interface Deal {
   id: string;
   title: string;
   description: string;
-  category: 'Electronics' | 'Tools & Home' | 'Appliances' | 'Furniture' | 'Liquidation Pallets';
+  category: "Electronics" | "Tools & Home" | "Appliances" | "Furniture" | "Liquidation Pallets";
   price: number;
   originalPrice: number;
   discountPercent: number;
-  condition: 'Open Box - Pristine' | 'Open Box - Excellent' | 'Box Damaged - New' | 'Clearance Pallet' | 'Refurbished';
+  condition:
+    | "Open Box - Pristine"
+    | "Open Box - Excellent"
+    | "Box Damaged - New"
+    | "Clearance Pallet"
+    | "Refurbished";
   storeName: string;
   storeLocation: Location;
   shippingAvailable: boolean;
   onlineReferralRate: number; // percentage (e.g. 5% or flat amount like $15)
-  referralEarningType: 'percentage' | 'flat';
+  referralEarningType: "percentage" | "flat";
   referralEarningValue: number;
   originalProductUrl: string;
   imageUrl: string;
@@ -57,7 +62,7 @@ export interface UserStats {
     id: string;
     date: string;
     amount: number;
-    status: 'Completed' | 'Pending';
+    status: "Completed" | "Pending";
   }[];
 }
 

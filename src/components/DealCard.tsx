@@ -3,19 +3,19 @@
  * SPDX-License-Identifier: Apache-2.0
  */
 
-import React from 'react';
-import { 
-  DollarSign, 
-  MapPin, 
-  Truck, 
-  Users, 
-  Award, 
+import React from "react";
+import {
+  DollarSign,
+  MapPin,
+  Truck,
+  Users,
+  Award,
   ExternalLink,
   ChevronRight,
   TrendingUp,
-  Tag
-} from 'lucide-react';
-import { Deal } from '../types';
+  Tag,
+} from "lucide-react";
+import { Deal } from "../types";
 
 interface DealCardProps {
   key?: string;
@@ -24,24 +24,20 @@ interface DealCardProps {
   onSelect: () => void;
 }
 
-export default function DealCard({
-  deal,
-  isSelected,
-  onSelect
-}: DealCardProps) {
+export default function DealCard({ deal, isSelected, onSelect }: DealCardProps) {
   // Get Tailwind color scheme based on condition
   const getConditionColor = (cond: string) => {
     switch (cond) {
-      case 'Open Box - Pristine':
-        return 'bg-emerald-50 text-emerald-800 border-emerald-200';
-      case 'Open Box - Excellent':
-        return 'bg-blue-50 text-blue-800 border-blue-200';
-      case 'Box Damaged - New':
-        return 'bg-orange-50 text-orange-800 border-orange-200';
-      case 'Clearance Pallet':
-        return 'bg-purple-50 text-purple-800 border-purple-200';
+      case "Open Box - Pristine":
+        return "bg-emerald-50 text-emerald-800 border-emerald-200";
+      case "Open Box - Excellent":
+        return "bg-blue-50 text-blue-800 border-blue-200";
+      case "Box Damaged - New":
+        return "bg-orange-50 text-orange-800 border-orange-200";
+      case "Clearance Pallet":
+        return "bg-purple-50 text-purple-800 border-purple-200";
       default:
-        return 'bg-neutral-100 text-neutral-800 border-neutral-200';
+        return "bg-neutral-100 text-neutral-800 border-neutral-200";
     }
   };
 
@@ -50,8 +46,8 @@ export default function DealCard({
       onClick={onSelect}
       className={`group rounded-2xl border transition-all p-4 cursor-pointer relative overflow-hidden flex flex-col justify-between h-full bg-white ${
         isSelected
-          ? 'border-neutral-900 ring-2 ring-neutral-900 ring-offset-2 shadow-md'
-          : 'border-neutral-200 hover:border-neutral-400 hover:shadow-sm'
+          ? "border-neutral-900 ring-2 ring-neutral-900 ring-offset-2 shadow-md"
+          : "border-neutral-200 hover:border-neutral-400 hover:shadow-sm"
       }`}
     >
       <div className="space-y-3">
@@ -61,7 +57,9 @@ export default function DealCard({
             {deal.category}
           </span>
           <div className="flex items-center gap-1.5">
-            <span className={`text-[10px] font-semibold px-2.5 py-0.5 rounded-full border ${getConditionColor(deal.condition)}`}>
+            <span
+              className={`text-[10px] font-semibold px-2.5 py-0.5 rounded-full border ${getConditionColor(deal.condition)}`}
+            >
               {deal.condition}
             </span>
           </div>
@@ -70,11 +68,11 @@ export default function DealCard({
         {/* Thumbnail + Details */}
         <div className="flex gap-3.5">
           <div className="h-16 w-16 rounded-xl overflow-hidden shrink-0 bg-neutral-100 border border-neutral-200">
-            <img 
-              src={deal.imageUrl} 
+            <img
+              src={deal.imageUrl}
               alt={deal.title}
               referrerPolicy="no-referrer"
-              className="h-full w-full object-cover group-hover:scale-105 transition-transform duration-300" 
+              className="h-full w-full object-cover group-hover:scale-105 transition-transform duration-300"
             />
           </div>
           <div className="space-y-1">
@@ -90,10 +88,16 @@ export default function DealCard({
         {/* Pricing & Savings */}
         <div className="bg-neutral-50 rounded-xl p-3 border border-neutral-150 flex items-center justify-between">
           <div>
-            <span className="text-[9px] text-neutral-400 block uppercase font-medium">Liquidation price</span>
+            <span className="text-[9px] text-neutral-400 block uppercase font-medium">
+              Liquidation price
+            </span>
             <div className="flex items-baseline gap-1.5">
-              <span className="text-md font-extrabold text-neutral-900 font-mono">${deal.price}</span>
-              <span className="text-[11px] text-neutral-400 line-through font-mono">${deal.originalPrice}</span>
+              <span className="text-md font-extrabold text-neutral-900 font-mono">
+                ${deal.price}
+              </span>
+              <span className="text-[11px] text-neutral-400 line-through font-mono">
+                ${deal.originalPrice}
+              </span>
             </div>
           </div>
           <div className="text-right">
@@ -101,7 +105,7 @@ export default function DealCard({
               -{deal.discountPercent}% OFF
             </span>
             <span className="text-[9px] text-emerald-600 block font-semibold mt-0.5">
-              Saves ${(deal.originalPrice - deal.price)}
+              Saves ${deal.originalPrice - deal.price}
             </span>
           </div>
         </div>
@@ -144,11 +148,11 @@ export default function DealCard({
         <button
           className={`w-full py-1.5 text-xs font-bold rounded-xl transition-all flex items-center justify-center gap-1 cursor-pointer ${
             isSelected
-              ? 'bg-neutral-900 text-white'
-              : 'bg-neutral-50 border border-neutral-200 hover:bg-neutral-100 text-neutral-700'
+              ? "bg-neutral-900 text-white"
+              : "bg-neutral-50 border border-neutral-200 hover:bg-neutral-100 text-neutral-700"
           }`}
         >
-          <span>{isSelected ? 'Selected Route Map Active' : 'View Store Location & Map'}</span>
+          <span>{isSelected ? "Selected Route Map Active" : "View Store Location & Map"}</span>
           <ChevronRight className="w-3.5 h-3.5" />
         </button>
       </div>

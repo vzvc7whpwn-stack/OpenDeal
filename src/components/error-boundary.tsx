@@ -36,9 +36,7 @@ export class ErrorBoundary extends Component<Props, State> {
     return (
       <div className="flex min-h-[40vh] items-center justify-center px-4 py-12">
         <div className="max-w-md text-center">
-          <h2 className="text-lg font-semibold text-foreground">
-            This section couldn&apos;t load
-          </h2>
+          <h2 className="text-lg font-semibold text-foreground">This section couldn&apos;t load</h2>
           <p className="mt-2 text-sm text-muted-foreground">
             A component failed to render. The rest of the page is still working.
           </p>

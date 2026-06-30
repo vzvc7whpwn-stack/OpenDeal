@@ -11,17 +11,25 @@ export const Route = createFileRoute("/")({
         content:
           "Browse live open-box, refurbished, and liquidation pallet deals in major US metros. Compare local comps, calculate pickup drive time, and earn promoter commissions on every referred sale.",
       },
-      { name: "keywords", content: "liquidation pallets, open box deals, refurbished electronics, affiliate commission, deal scanner" },
+      {
+        name: "keywords",
+        content:
+          "liquidation pallets, open box deals, refurbished electronics, affiliate commission, deal scanner",
+      },
       { property: "og:title", content: "OpenDeal Route Scanner — Liquidation & Open-Box Deals" },
       {
         property: "og:description",
-        content: "Find open-box and clearance deals near you, compare nearby comps, and earn referral commissions.",
+        content:
+          "Find open-box and clearance deals near you, compare nearby comps, and earn referral commissions.",
       },
       { property: "og:type", content: "website" },
       { property: "og:url", content: "/" },
       { name: "twitter:card", content: "summary_large_image" },
       { name: "twitter:title", content: "OpenDeal Route Scanner" },
-      { name: "twitter:description", content: "Open-box and liquidation deals with built-in promoter earnings." },
+      {
+        name: "twitter:description",
+        content: "Open-box and liquidation deals with built-in promoter earnings.",
+      },
     ],
     links: [{ rel: "canonical", href: "/" }],
     scripts: [

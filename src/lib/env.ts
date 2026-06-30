@@ -10,7 +10,8 @@ export type RequiredEnvVar = {
 
 const raw = {
   VITE_SUPABASE_URL: import.meta.env.VITE_SUPABASE_URL as string | undefined,
-  VITE_SUPABASE_PUBLISHABLE_KEY: import.meta.env.VITE_SUPABASE_PUBLISHABLE_KEY as string | undefined,
+  VITE_SUPABASE_PUBLISHABLE_KEY: import.meta.env.VITE_SUPABASE_PUBLISHABLE_KEY as
+    string | undefined,
 };
 
 const REQUIRED: RequiredEnvVar[] = [
