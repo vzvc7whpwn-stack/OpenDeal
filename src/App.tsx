@@ -34,6 +34,7 @@ import { Deal, CompDeal, UserStats } from './types';
 import DealCard from './components/DealCard';
 import DealsMap from './components/DealsMap';
 import EarningsHub from './components/EarningsHub';
+import { SpeedInsights } from '@vercel/speed-insights/react';
 
 export default function App() {
   const [liveDeals, setLiveDeals] = useState<Deal[]>([]);
@@ -597,6 +598,7 @@ export default function App() {
           </div>
         </div>
       )}
+      <SpeedInsights />
     </div>
   );
 }
