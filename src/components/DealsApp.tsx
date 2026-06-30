@@ -232,6 +232,8 @@ export default function DealsApp() {
                 <span className="text-xs font-bold font-mono text-white">${userStats.totalEarnings.toFixed(2)}</span>
               </div>
             </div>
+
+            <AuthChip />
           </div>
         </div>
       </header>
@@ -505,7 +507,7 @@ export default function DealsApp() {
 
             {/* Promoter Earnings Hub Component */}
             <div className={`lg:block ${mobileActiveTab === 'promoter' ? 'block' : 'hidden'}`}>
-              {true ? (
+              {user ? (
                 <EarningsHub
                   deals={DEALS_DATA}
                   userStats={userStats}
